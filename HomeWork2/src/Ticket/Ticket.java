@@ -20,6 +20,8 @@ public class Ticket {
 	
 	private Date creationTime;
 	
+	private float price;
+	
 	public Ticket() {
 		creationTime = getCreationTime();
 	};
@@ -52,6 +54,13 @@ public class Ticket {
 	
 	private Date getCreationTime() {
 		return new Date();
+	}
+	
+	public float getPrice() {
+		return price;
+	}
+	public void setPrice(float price) {
+		this.price = price;
 	}
 	
 }
