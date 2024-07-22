@@ -1,5 +1,7 @@
 package Ticket;
 
+import java.util.Date;
+
 public class Ticket {
 	
 	public short id;
@@ -16,12 +18,17 @@ public class Ticket {
 	
 	protected float maxWeight;
 	
-	public Ticket() {};
+	private Date creationTime;
+	
+	public Ticket() {
+		creationTime = getCreationTime();
+	};
 	
 	public Ticket(String concertHall, short eventCode, long time) {
 		this.concertHall = concertHall;
 		this.eventCode = eventCode;
 		this.time = time;
+		creationTime = getCreationTime();
 	};
 	
 	public Ticket(
@@ -40,6 +47,11 @@ public class Ticket {
 		this.isPromo = isPromo;
 		this.stadiumSector = stadiumSector;
 		this.maxWeight = maxWeight;
+		creationTime = getCreationTime();
 	};
+	
+	private Date getCreationTime() {
+		return new Date();
+	}
 	
 }
