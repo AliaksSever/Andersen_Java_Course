@@ -32,7 +32,7 @@ public class Ticket {
 	
 	public Ticket(String concertHall, short eventCode, long time) {
 		setConcertHall(concertHall);
-		this.eventCode = eventCode;
+		setEventCode(eventCode);
 		this.time = time;
 		creationTime = getCreationTime();
 	};
@@ -46,9 +46,9 @@ public class Ticket {
 			char stadiumSector,
 			float maxWeight
 			) {
-		this.id = id;
+		setId(id);
 		setConcertHall(concertHall);
-		this.eventCode = eventCode;
+		setEventCode(eventCode);
 		this.time = time;
 		this.isPromo = isPromo;
 		setStadiumSector(stadiumSector);
@@ -84,6 +84,22 @@ public class Ticket {
 		if (secotrsList.contains(stadiumSector)) {
 			this.stadiumSector = stadiumSector;
 		}
+	}
+	
+	private void setId(Short id) {
+		if (digitsChekc(id, (byte)4)) {
+			this.id = id;
+		}
+	}
+	
+	private void setEventCode(Short eventCode) {
+		if (digitsChekc(eventCode, (byte)3)) {
+			this.eventCode = eventCode;
+		}
+	}
+	
+	private boolean digitsChekc(Short value, byte number) {
+		return value.toString().length() <= number;
 	}
 	
 }
