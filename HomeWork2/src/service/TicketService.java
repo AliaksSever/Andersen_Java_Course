@@ -46,6 +46,6 @@ public class TicketService {
 				return ticketStorage[i];
 			}
 		}
-		return new Ticket();
+		return null;
 	}
 }
