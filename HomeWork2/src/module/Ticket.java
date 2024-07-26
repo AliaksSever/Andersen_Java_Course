@@ -1,4 +1,4 @@
-package Ticket;
+package module;
 
 import java.util.Date;
 import java.util.Arrays;
@@ -22,7 +22,7 @@ public class Ticket {
 	
 	protected float maxWeight;
 	
-	private Date creationTime;
+	private final Date creationTime;
 	
 	private float price;
 	

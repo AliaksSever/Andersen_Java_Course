@@ -1,4 +1,6 @@
-package Ticket;
+package service;
+
+import module.Ticket;
 
 public class TicketService {
 	public static void main(String[] args) {
