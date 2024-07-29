@@ -143,4 +143,26 @@ public class Ticket implements printer{
 		String result = "Ticket with id " + this.ID;
 		return result;
 	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		
+		Ticket that = (Ticket) o;
+
+		if (this.eventCode != that.eventCode) return false;
+		if (!this.time.isEqual(that.time)) return false;
+		if (this.stadiumSector != that.stadiumSector) return false;
+		
+		return this.concertHall.equals(that.concertHall);
+	}
+	
+	@Override
+	public int hashCode() {
+		int result = concertHall == null? 0 : concertHall.hashCode();
+		result+=eventCode;
+		result+=stadiumSector;
+		return result;
+	}
 }
