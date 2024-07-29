@@ -14,5 +14,8 @@ public class TicketService {
 				'C',
 				1.5f
 				);
+		
+		tOne.shared(375291234567l);
+		tTwo.shared("testemail@gmail.com");
 	}
 }

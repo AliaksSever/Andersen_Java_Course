@@ -117,6 +117,14 @@ public class Ticket extends info{
 				TimeZone.getDefault().toZoneId()
 				);
 	}
+	
+	public void shared(long phoneNumber) {
+		System.out.println("Ticket shared by phone: "+phoneNumber);
+	}
+	
+	public void shared(String email) {
+		System.out.println("Ticket shared by email: "+email);
+	}
 		
 	
 }
