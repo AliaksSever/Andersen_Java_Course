@@ -1,8 +1,10 @@
 package module;
 
-import java.util.Date;
 import java.util.Arrays;
 import java.util.List;
+import java.util.TimeZone;
+import java.time.Instant;
+import java.time.LocalDateTime;
 
 public class Ticket extends info{
 	
@@ -10,69 +12,69 @@ public class Ticket extends info{
 	
 	private String concertHall;
 	
-	protected short eventCode;
+	private int eventCode;
 	
-	protected long time;
+	private LocalDateTime time;
 	
-	protected boolean isPromo;
+	private boolean isPromo;
 	
 	private char stadiumSector;
 	
-	protected float maxWeight;
+	private float maxWeight;
 	
-	private final Date creationTime;
+	private final LocalDateTime creationTime = LocalDateTime.now();
 	
 	private float price;
 	
+	
 	public Ticket() {
 		setID();
-		creationTime = getCreationTime();
 	};
 	
-	public Ticket(String concertHall, short eventCode, long time) {
-		setID();
-		setConcertHall(concertHall);
-		setEventCode(eventCode);
-		this.time = time;
-		creationTime = getCreationTime();
+	public Ticket(String concertHall, int eventCode, long time) {
+		createLimitedTicket(concertHall, eventCode, time);
 	};
 	
 	public Ticket(
 			String concertHall,
-			short eventCode,
+			int eventCode,
 			long time,
 			boolean isPromo,
 			char stadiumSector,
 			float maxWeight
 			) {
-		setID();
-		setConcertHall(concertHall);
-		setEventCode(eventCode);
-		this.time = time;
+		createLimitedTicket(concertHall, eventCode, time);
 		this.isPromo = isPromo;
 		setStadiumSector(stadiumSector);
 		this.maxWeight = maxWeight;
-		creationTime = getCreationTime();
 	};
 	
-	private Date getCreationTime() {
-		return new Date();
-	}
-	
-	public float getPrice() {
-		return price;
-	}
-	public void setPrice(float price) {
-		this.price = price;
-	}
 	
 	public String getConcertHall() {
 		return concertHall;
 	}
-	public void setConcertHall(String concertHall) {
+	private void setConcertHall(String concertHall) {
 		if (concertHall.length() <= 10) {
 			this.concertHall = concertHall;
 		}
+	}
+	
+	public int getEventCode() {
+		return eventCode;
+	}
+	
+	public LocalDateTime getTime() {
+		return time;
+	}
+	public void setTime(long unixTimeStamp) {
+		this.time = LocalDateTime.ofInstant(
+				Instant.ofEpochSecond(unixTimeStamp),
+				TimeZone.getDefault().toZoneId()
+				);
+	}
+	
+	public boolean getIsPromo() {
+		return isPromo;
 	}
 	
 	public char getStadiumSector() {
@@ -85,14 +87,36 @@ public class Ticket extends info{
 		}
 	}
 	
-	private void setEventCode(Short eventCode) {
-		if (digitsChekc(eventCode, (byte)3)) {
-			this.eventCode = eventCode;
-		}
+	public float getMaxWeight() {
+		return maxWeight;
 	}
 	
-	private boolean digitsChekc(Short value, byte number) {
-		return value.toString().length() <= number;
+	public LocalDateTime getCreationTime() {
+		return creationTime;
 	}
+	
+	public float getPrice() {
+		return price;
+	}
+	public void savePrice(float price) {
+		this.price = price;
+	}
+
+	private boolean digitsChekc(int value, int number) {
+		return String.valueOf(value).length() <= number;
+	}
+	
+	private void createLimitedTicket(String concertHall, int eventCode, long time) {
+		setID();
+		setConcertHall(concertHall);
+		if (digitsChekc(eventCode, 3)) {
+			this.eventCode = eventCode;
+		}
+		this.time = LocalDateTime.ofInstant(
+				Instant.ofEpochSecond(time),
+				TimeZone.getDefault().toZoneId()
+				);
+	}
+		
 	
 }
