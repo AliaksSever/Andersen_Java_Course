@@ -24,4 +24,8 @@ public abstract class info {
 	private boolean checkIdLen(int id) {
 		return String.valueOf(id).length() <= IdLenght;
 	}
+	
+	public void print() {
+		System.out.println("print content in console");
+	}
 }
