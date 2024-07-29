@@ -6,9 +6,13 @@ import java.util.TimeZone;
 import java.time.Instant;
 import java.time.LocalDateTime;
 
-public class Ticket extends info{
+public class Ticket implements printer{
+	
+	private static int IdCounter = 0;
 	
 	private static Character[] sectors = {'A', 'B', 'C'};
+	
+	private int ID;
 	
 	private String concertHall;
 	
@@ -49,6 +53,14 @@ public class Ticket extends info{
 		this.maxWeight = maxWeight;
 	};
 	
+	
+	public int getID() {
+		return this.ID;
+	}
+	private void setID() {
+		IdCounter+=1;
+		this.ID = IdCounter;
+	}
 	
 	public String getConcertHall() {
 		return concertHall;
