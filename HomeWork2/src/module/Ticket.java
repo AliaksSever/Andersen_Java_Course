@@ -4,11 +4,9 @@ import java.util.Date;
 import java.util.Arrays;
 import java.util.List;
 
-public class Ticket {
+public class Ticket extends info{
 	
 	private static Character[] sectors = {'A', 'B', 'C'};
-	
-	public short id;
 	
 	private String concertHall;
 	
@@ -27,10 +25,12 @@ public class Ticket {
 	private float price;
 	
 	public Ticket() {
+		setID();
 		creationTime = getCreationTime();
 	};
 	
 	public Ticket(String concertHall, short eventCode, long time) {
+		setID();
 		setConcertHall(concertHall);
 		setEventCode(eventCode);
 		this.time = time;
@@ -38,7 +38,6 @@ public class Ticket {
 	};
 	
 	public Ticket(
-			short id,
 			String concertHall,
 			short eventCode,
 			long time,
@@ -46,7 +45,7 @@ public class Ticket {
 			char stadiumSector,
 			float maxWeight
 			) {
-		setId(id);
+		setID();
 		setConcertHall(concertHall);
 		setEventCode(eventCode);
 		this.time = time;
@@ -83,12 +82,6 @@ public class Ticket {
 		List<Character> secotrsList = Arrays.asList(sectors);
 		if (secotrsList.contains(stadiumSector)) {
 			this.stadiumSector = stadiumSector;
-		}
-	}
-	
-	private void setId(Short id) {
-		if (digitsChekc(id, (byte)4)) {
-			this.id = id;
 		}
 	}
 	
