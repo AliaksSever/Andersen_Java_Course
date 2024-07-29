@@ -137,6 +137,10 @@ public class Ticket implements printer{
 	public void shared(String email) {
 		System.out.println("Ticket shared by email: "+email);
 	}
-		
 	
+	@Override
+	public String toString() {
+		String result = "Ticket with id " + this.ID;
+		return result;
+	}
 }
