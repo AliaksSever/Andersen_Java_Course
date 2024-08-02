@@ -1,6 +1,6 @@
 package module;
 
-public class Client extends user{
+public class Client extends User{
 	
 	private Ticket ticket;
 	

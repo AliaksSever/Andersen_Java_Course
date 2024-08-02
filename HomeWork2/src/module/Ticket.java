@@ -6,7 +6,7 @@ import java.util.TimeZone;
 import java.time.Instant;
 import java.time.LocalDateTime;
 
-public class Ticket extends BaseModel implements printer{
+public class Ticket extends BaseModel implements Printer{
 	
 	private static Character[] sectors = {'A', 'B', 'C'};
 	

@@ -1,6 +1,6 @@
 package module;
 
-public class Admin extends user{
+public class Admin extends User{
 	
 	@Override
 	public void printRole() {

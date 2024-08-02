@@ -1,6 +1,6 @@
 package module;
 
-public abstract class user {
+public abstract class User {
 	
 	public abstract void printRole();
 	
