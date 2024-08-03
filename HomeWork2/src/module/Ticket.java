@@ -1,14 +1,10 @@
 package module;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.TimeZone;
 import java.time.Instant;
 import java.time.LocalDateTime;
 
 public class Ticket extends BaseModel implements Printer{
-	
-	private static Character[] sectors = {'A', 'B', 'C'};
 	
 	private String concertHall;
 	
@@ -18,7 +14,7 @@ public class Ticket extends BaseModel implements Printer{
 	
 	private boolean isPromo;
 	
-	private char stadiumSector;
+	private TicketSector stadiumSector;
 	
 	private float maxWeight;
 	
@@ -38,12 +34,12 @@ public class Ticket extends BaseModel implements Printer{
 			int eventCode,
 			long time,
 			boolean isPromo,
-			char stadiumSector,
+			TicketSector stadiumSector,
 			float maxWeight
 			) {
 		createLimitedTicket(concertHall, eventCode, time);
 		this.isPromo = isPromo;
-		setStadiumSector(stadiumSector);
+		this.stadiumSector = stadiumSector;
 		this.maxWeight = maxWeight;
 	};
 	
@@ -76,13 +72,7 @@ public class Ticket extends BaseModel implements Printer{
 	}
 	
 	public char getStadiumSector() {
-		return stadiumSector;
-	}
-	public void setStadiumSector(char stadiumSector) {
-		List<Character> secotrsList = Arrays.asList(sectors);
-		if (secotrsList.contains(stadiumSector)) {
-			this.stadiumSector = stadiumSector;
-		}
+		return stadiumSector.getSector();
 	}
 	
 	public float getMaxWeight() {
@@ -148,7 +138,7 @@ public class Ticket extends BaseModel implements Printer{
 	public int hashCode() {
 		int result = concertHall == null? 0 : concertHall.hashCode();
 		result+=eventCode;
-		result+=stadiumSector;
+		result+=stadiumSector.getSector();
 		return result;
 	}
 }
