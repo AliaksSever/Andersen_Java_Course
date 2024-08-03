@@ -27,9 +27,7 @@ public class Ticket extends BaseModel implements Printer{
 	private float price;
 	
 	
-	public Ticket() {
-		setID();
-	};
+	public Ticket() {};
 	
 	public Ticket(String concertHall, int eventCode, long time) {
 		createLimitedTicket(concertHall, eventCode, time);
