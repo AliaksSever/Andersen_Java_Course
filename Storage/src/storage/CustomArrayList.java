@@ -11,7 +11,13 @@ public class CustomArrayList<T> {
         checkArrayLength();
     }
 
-    public void get(int index) {}
+    public T get(int index) {
+    	if (index<0 || index>=size) {
+    		String exceptionMessage = "Index " + index + " out of bounds for length " + size;
+    		throw new IndexOutOfBoundsException(exceptionMessage);
+    	}
+    	return customArray[index];
+    }
 
     public void delete(int index) {}
 
