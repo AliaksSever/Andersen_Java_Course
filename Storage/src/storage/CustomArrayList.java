@@ -19,7 +19,23 @@ public class CustomArrayList<T> {
     	return customArray[index];
     }
 
-    public void delete(int index) {}
+    public void delete(int index) {
+    	if (index<0 || index>=size) {
+    		String exceptionMessage = "Index " + index + " out of bounds for length " + size;
+    		throw new IndexOutOfBoundsException(exceptionMessage);
+    	}
+    	
+    	int newCustomArrayIndex = 0;
+    	T[] newCustomArray = (T[]) new Object[customArray.length-1];
+    	
+    	for (int i = 0; i<customArray.length; i++) {
+    		if (i == index) continue;
+    		newCustomArray[newCustomArrayIndex] = customArray[i];
+    		newCustomArrayIndex++;
+    	}
+    	customArray = newCustomArray;
+    	size--;
+    }
 
     public void checkArrayLength() {
         if (size==customArray.length) {
