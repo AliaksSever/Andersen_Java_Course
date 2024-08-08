@@ -1,8 +1,9 @@
 package storage;
 import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.Iterator;
 
-public class CustomHashSet<T> {
+public class CustomHashSet<T> implements Iterable<T>{
 	
 	private T[] customSet = (T[]) new Object[10];
 	private int size = 0;
@@ -106,6 +107,32 @@ public class CustomHashSet<T> {
 			setToPrint[i] = customSet[i];
 		}
 		return Arrays.toString(setToPrint);
+	}
+	
+	public Iterator<T> iterator() {
+		return new Iter(size, customSet);
+	}
+	
+	private class Iter implements Iterator<T>{
+		
+		private int current;
+		private int size;
+		private T[] list;
+		
+		public Iter(int size, T[] list) {
+			this.size = size;
+			this.list = list;
+		}
+		
+		@Override
+		public boolean hasNext() {
+			return current<size;
+		}
+		
+		@Override
+		public T next() {
+			return list[current++];
+		}
 	}
 	
 }
