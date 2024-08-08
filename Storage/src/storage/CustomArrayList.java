@@ -49,7 +49,11 @@ public class CustomArrayList<T> {
 
     @Override
     public String toString() {
-        return Arrays.toString(customArray);
+    	T[] listToPrint = (T[]) new Object[size];
+    	for (int i = 0; i<size; i++) {
+    		listToPrint[i] = customArray[i];
+    	}
+        return Arrays.toString(listToPrint);
     }
 
     public int size() {
