@@ -18,9 +18,9 @@ public class CustomHashSet<T> implements Iterable<T>{
 	
 	public void delete(T o) {
 		if (contains(o)) {
-			T[] newCustomSet = (T[]) new Object[size-1];
+			T[] newCustomSet = (T[]) new Object[customSet.length-1];
 			int newCustomSetIndex = 0;
-			for (int i=0; i<size; i++) {
+			for (int i=0; i<customSet.length; i++) {
 				
 				try {
 					if (customSet[i].equals(o)) {
@@ -106,7 +106,7 @@ public class CustomHashSet<T> implements Iterable<T>{
 		for (int i=0; i<size; i++) {
 			setToPrint[i] = customSet[i];
 		}
-		return Arrays.toString(setToPrint);
+		return Arrays.toString(customSet);
 	}
 	
 	public Iterator<T> iterator() {
