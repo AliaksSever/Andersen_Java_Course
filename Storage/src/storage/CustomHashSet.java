@@ -15,6 +15,34 @@ public class CustomHashSet<T> {
 		}
 	}
 	
+	public void delete(T o) {
+		if (contains(o)) {
+			T[] newCustomSet = (T[]) new Object[size-1];
+			int newCustomSetIndex = 0;
+			for (int i=0; i<size; i++) {
+				
+				try {
+					if (customSet[i].equals(o)) {
+						continue;
+					}
+					newCustomSet[newCustomSetIndex] = customSet[i];
+					newCustomSetIndex++;
+				}
+				catch (NullPointerException e) {
+					if (o == null) {
+						continue;
+					}
+					else {
+						newCustomSet[newCustomSetIndex] = customSet[i];
+						newCustomSetIndex++;
+					}
+				}
+			}
+			customSet = newCustomSet;
+			size--;
+		}
+	}
+	
 	
 	private void checkLength() {
 		if (size==customSet.length) {
