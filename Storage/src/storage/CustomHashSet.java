@@ -34,15 +34,21 @@ public class CustomHashSet<T> {
 			ArrayList<T> objectsWithEqualHash = new ArrayList<>();
 			
 			for (int i = 0; i<size; i++) {
-				if (objectHash == customSet[i].hashCode()) {
-					objectsWithEqualHash.add(o);
-					hashEqual = true;
+				try {
+					int setObjHash = customSet[i].hashCode();
+					if (objectHash == setObjHash) {
+						objectsWithEqualHash.add(customSet[i]);
+						hashEqual = true;
+					}
+				}
+				catch (NullPointerException e) {
+					continue;
 				}
 			}
 			
 			if (hashEqual) {
-				for (int i = 0; i<objectsWithEqualHash.size(); i++) {
-					if(o.equals(objectsWithEqualHash.get(i))) {
+				for (T obj: objectsWithEqualHash) {
+					if (o.equals(obj)) {
 						return true;
 					}
 				}
