@@ -4,6 +4,14 @@ import com.severin.module.Ticket;
 
 public class Admin extends User{
 
+    private final static Admin adminInstance =  new Admin();
+
+    private Admin() {}
+
+    public static Admin getAdminInstance() {
+        return adminInstance;
+    }
+
     @Override
     public void printRole() {
         System.out.println("This is Admin: " + getClass());

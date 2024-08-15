@@ -23,7 +23,7 @@ public class TicketService {
         limitedTicket.shared("testemail@gmail.com");
 
         Client client = new Client();
-        Admin admin = new Admin();
+        Admin admin = Admin.getAdminInstance();
 
         client.printRole();
         admin.printRole();

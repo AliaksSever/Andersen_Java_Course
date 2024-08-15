@@ -1,6 +1,8 @@
 package com.severin.users;
 
-public abstract class User {
+import com.severin.module.BaseModel;
+
+public abstract class User extends BaseModel{
 
     public abstract void printRole();
 
