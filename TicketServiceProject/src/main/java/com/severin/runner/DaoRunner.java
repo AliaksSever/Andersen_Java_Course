@@ -25,9 +25,18 @@ public class DaoRunner {
         return userDao.findAll();
     }
 
-    public static Optional<TicketEntity> testfindById(int id) {
+//    FIND BY ID
+
+    public static Optional<TicketEntity> testFindTicketById(int id) {
         return ticketDao.findById(id);
     }
+
+    public static Optional<UserEntity> testFindUserById(int id) {
+        return userDao.findById(id);
+    }
+
+
+//    UPDATE
 
     public static void testUpdate() {
         TicketEntity ticket = buildTicketExample(2, TicketType.MONTH, 2);

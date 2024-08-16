@@ -2,8 +2,6 @@ package com.severin.dao;
 
 import com.severin.entity.UserEntity;
 import com.severin.connection.ConnectionManager;
-import com.severin.entity.TicketEntity;
-import com.severin.enums.TicketType;
 import com.severin.exception.DaoException;
 
 import java.sql.Connection;
@@ -37,6 +35,10 @@ public class UserDao {
             FROM users
             """;
 
+    private final static String FIND_BY_ID_SQL = FIND_ALL_SQL + """
+            WHERE id = ?
+            """;
+
     private UserDao(){}
 
     public List<UserEntity> findAll() {
@@ -52,6 +54,26 @@ public class UserDao {
             return users;
         }
         catch(SQLException e) {
+            throw new DaoException(e);
+        }
+    }
+
+    public Optional<UserEntity> findById(int id) {
+        try(Connection connection = ConnectionManager.open();
+            PreparedStatement preparedStatement = connection.prepareStatement(FIND_BY_ID_SQL);
+        ){
+            preparedStatement.setInt(1, id);
+
+            ResultSet resSet = preparedStatement.executeQuery();
+
+            UserEntity user = null;
+
+            if(resSet.next()) {
+                user = buildUser(resSet);
+            }
+            return Optional.ofNullable(user);
+        }
+        catch (SQLException e) {
             throw new DaoException(e);
         }
     }
