@@ -38,10 +38,15 @@ public class DaoRunner {
 
 //    UPDATE
 
-    public static void testUpdate() {
+    public static void testUpdateTicket() {
         TicketEntity ticket = buildTicketExample(2, TicketType.MONTH, 2);
 
         ticketDao.update(ticket);
+    }
+
+    public static void testUpdateUser() {
+        UserEntity user = buildUserExample(4, "Alex");
+        userDao.update(user);
     }
 
 

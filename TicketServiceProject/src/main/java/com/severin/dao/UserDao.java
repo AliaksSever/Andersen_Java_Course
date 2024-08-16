@@ -23,6 +23,13 @@ public class UserDao {
             INSERT INTO users(name)
             VALUES(?)
             """;
+
+    private static final String UPDATE_SQL = """
+            UPDATE users
+            SET name = ?
+            WHERE id = ?
+            """;
+
     private static final String DELETE_SQL = """
             DELETE FROM users
             WHERE id = ?
@@ -40,6 +47,10 @@ public class UserDao {
             """;
 
     private UserDao(){}
+
+    public static UserDao getInstance() {
+        return INSTANCE;
+    }
 
     public List<UserEntity> findAll() {
         try(Connection connection = ConnectionManager.open();
@@ -78,10 +89,6 @@ public class UserDao {
         }
     }
 
-    public static UserDao getInstance() {
-        return INSTANCE;
-    }
-
     public UserEntity save(UserEntity user) {
         try(Connection connection = ConnectionManager.open();
             PreparedStatement preparedStatement = connection.prepareStatement(SAVE_SQL, Statement.RETURN_GENERATED_KEYS);
@@ -104,6 +111,20 @@ public class UserDao {
             throw new DaoException(e);
         }
 
+    }
+
+    public void update(UserEntity user) {
+        try(Connection connection = ConnectionManager.open();
+            PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_SQL);
+        ) {
+            preparedStatement.setString(1, user.getName());
+            preparedStatement.setInt(2, user.getId());
+
+            preparedStatement.executeUpdate();
+        }
+        catch(SQLException e) {
+            throw new DaoException(e);
+        }
     }
 
     public boolean delete(int id) {

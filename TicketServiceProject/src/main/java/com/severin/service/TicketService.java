@@ -13,6 +13,6 @@ import com.severin.runner.DaoRunner;
 
 public class TicketService {
     public static void main(String[] args) {
-        System.out.println(DaoRunner.testFindUserById(3));
+        System.out.println(DaoRunner.testFindAllUsers());
     }
 }
