@@ -25,6 +25,10 @@ public class UserDao {
             INSERT INTO users(name)
             VALUES(?)
             """;
+    private static final String DELETE_SQL = """
+            DELETE FROM users
+            WHERE id = ?
+            """;
 
     private UserDao(){}
 
@@ -34,12 +38,12 @@ public class UserDao {
 
     public UserEntity save(UserEntity user) {
         try(Connection connection = ConnectionManager.open();
-            PreparedStatement prepStat = connection.prepareStatement(SAVE_SQL, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement preparedStatement = connection.prepareStatement(SAVE_SQL, Statement.RETURN_GENERATED_KEYS);
         ) {
-            prepStat.setString(1, user.getName());
-            prepStat.executeUpdate();
+            preparedStatement.setString(1, user.getName());
+            preparedStatement.executeUpdate();
 
-            ResultSet generatedKey = prepStat.getGeneratedKeys();
+            ResultSet generatedKey = preparedStatement.getGeneratedKeys();
             if (generatedKey.next()) {
                 user.setId(generatedKey.getInt("id"));
 
@@ -54,6 +58,18 @@ public class UserDao {
             throw new DaoException(e);
         }
 
+    }
+
+    public boolean delete(int id) {
+        try(Connection connection = ConnectionManager.open();
+            PreparedStatement preparedStatement = connection.prepareStatement(DELETE_SQL);
+        ){
+            preparedStatement.setInt(1, id);
+            return preparedStatement.executeUpdate()>0;
+        }
+        catch(SQLException e) {
+            throw new DaoException(e);
+        }
     }
 
 }

@@ -41,11 +41,20 @@ public class DaoRunner {
         return userDao.save(user);
     }
 
-    public static boolean testDelete() {
+
+//    DELETE
+
+    public static boolean testDeleteTicket() {
         TicketEntity ticket = buildTicketExample(6, TicketType.YEAR, 2);
         return ticketDao.delete(ticket.getId());
     }
 
+    public static boolean testDeleteUser() {
+        return userDao.delete(2);
+    }
+
+
+//    BUILD TICKET/USER
     private static TicketEntity buildTicketExample(int id, TicketType ticketType, int user_id) {
         return new TicketEntity(
                 id,
