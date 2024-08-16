@@ -16,8 +16,13 @@ public class DaoRunner {
     private final static TicketDao ticketDao = TicketDao.getInstance();
     private final static UserDao userDao = UserDao.getInstance();
 
-    public static List<TicketEntity> testfindAll() {
+//    FIND ALL
+    public static List<TicketEntity> testFindAllTicket() {
         return ticketDao.findAll();
+    }
+
+    public static List<UserEntity> testFindAllUsers() {
+        return userDao.findAll();
     }
 
     public static Optional<TicketEntity> testfindById(int id) {
@@ -29,6 +34,7 @@ public class DaoRunner {
 
         ticketDao.update(ticket);
     }
+
 
 //    SAVE
     public static TicketEntity testSaveTicket() {

@@ -14,6 +14,6 @@ import com.severin.runner.DaoRunner;
 
 public class TicketService {
     public static void main(String[] args) {
-        System.out.println(DaoRunner.testDeleteUser());
+        System.out.println(DaoRunner.testFindAllUsers());
     }
 }

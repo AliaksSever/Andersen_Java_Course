@@ -17,7 +17,7 @@ public class UserEntity {
         return "Users {" +
                 "id="+id+"\t"+
                 "name="+name+"\t"+
-                "creation_date="+creationDate+"\t"+
+                "creation_date="+creationDate+
                 "}";
     }
 }

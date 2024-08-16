@@ -30,7 +30,31 @@ public class UserDao {
             WHERE id = ?
             """;
 
+    private static final String FIND_ALL_SQL = """
+            SELECT id,
+                   name,
+                   creation_date
+            FROM users
+            """;
+
     private UserDao(){}
+
+    public List<UserEntity> findAll() {
+        try(Connection connection = ConnectionManager.open();
+            PreparedStatement preparedStatement = connection.prepareStatement(FIND_ALL_SQL);
+        ){
+            ResultSet resultSet = preparedStatement.executeQuery();
+            List<UserEntity> users= new ArrayList<>();
+
+            while (resultSet.next()) {
+                users.add(buildUser(resultSet));
+            }
+            return users;
+        }
+        catch(SQLException e) {
+            throw new DaoException(e);
+        }
+    }
 
     public static UserDao getInstance() {
         return INSTANCE;
@@ -70,6 +94,14 @@ public class UserDao {
         catch(SQLException e) {
             throw new DaoException(e);
         }
+    }
+
+    public UserEntity buildUser(ResultSet resultSet) throws SQLException{
+        return new UserEntity(
+                resultSet.getInt("id"),
+                resultSet.getString("name"),
+                resultSet.getTimestamp("creation_date")
+        );
     }
 
 }
