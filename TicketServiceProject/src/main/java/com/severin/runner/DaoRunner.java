@@ -1,7 +1,9 @@
 package com.severin.runner;
 
 import com.severin.dao.TicketDao;
+import com.severin.dao.UserDao;
 import com.severin.entity.TicketEntity;
+import com.severin.entity.UserEntity;
 import com.severin.enums.TicketType;
 
 import java.util.List;
@@ -12,6 +14,7 @@ import java.sql.Timestamp;
 public class DaoRunner {
 
     private final static TicketDao ticketDao = TicketDao.getInstance();
+    private final static UserDao userDao = UserDao.getInstance();
 
     public static List<TicketEntity> testfindAll() {
         return ticketDao.findAll();
@@ -27,9 +30,15 @@ public class DaoRunner {
         ticketDao.update(ticket);
     }
 
-    public static TicketEntity TestSave() {
+//    SAVE
+    public static TicketEntity testSaveTicket() {
         TicketEntity ticket = buildTicketExample(2, TicketType.YEAR, 2);
         return ticketDao.save(ticket);
+    }
+
+    public static UserEntity testSaveUser() {
+        UserEntity user = buildUserExample(1, "Sergey");
+        return userDao.save(user);
     }
 
     public static boolean testDelete() {
@@ -42,6 +51,14 @@ public class DaoRunner {
                 id,
                 ticketType,
                 user_id,
+                new Timestamp(System.currentTimeMillis())
+        );
+    }
+
+    private static UserEntity buildUserExample(int id, String name) {
+        return new UserEntity(
+                id,
+                name,
                 new Timestamp(System.currentTimeMillis())
         );
     }

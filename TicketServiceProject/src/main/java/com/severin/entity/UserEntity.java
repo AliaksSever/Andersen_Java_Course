@@ -8,7 +8,7 @@ import java.sql.Timestamp;
 public class UserEntity {
     private int id;
     private String name;
-    private Timestamp creation_date;
+    private Timestamp creationDate;
 
     public UserEntity(){}
 
@@ -17,7 +17,7 @@ public class UserEntity {
         return "Users {" +
                 "id="+id+"\t"+
                 "name="+name+"\t"+
-                "creation_date="+creation_date+"\t"+
+                "creation_date="+creationDate+"\t"+
                 "}";
     }
 }
