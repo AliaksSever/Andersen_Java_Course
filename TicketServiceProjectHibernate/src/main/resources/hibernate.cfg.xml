@@ -17,5 +17,7 @@
 
         <property name = "hibernate.current_session_context_class">thread</property>
 
+        <mapping class="com.severin.entity.User"/>
+
     </session-factory>
 </hibernate-configuration>
