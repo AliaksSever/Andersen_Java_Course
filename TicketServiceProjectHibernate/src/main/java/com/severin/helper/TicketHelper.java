@@ -27,4 +27,11 @@ public class TicketHelper {
             return query.getResultList();
         }
     }
+
+    public static Ticket getTicketByID(SessionFactory sessionFactory, int id) {
+        try(Session session = sessionFactory.openSession();
+        ) {
+            return session.get(Ticket.class, id);
+        }
+    }
 }
