@@ -21,4 +21,13 @@ public class User {
     @Column(name = "creation_date")
     private final Timestamp creationDate = new Timestamp(System.currentTimeMillis());
 
+    @Override
+    public String toString() {
+        return "User ["+
+                "id="+this.id+" "+
+                "name="+this.name+" "+
+                "creation_date="+this.creationDate+
+                "]";
+    }
+
 }
