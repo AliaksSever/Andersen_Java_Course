@@ -18,6 +18,7 @@
         <property name = "hibernate.current_session_context_class">thread</property>
 
         <mapping class="com.severin.entity.User"/>
+        <mapping class="com.severin.entity.Ticket"/>
 
     </session-factory>
 </hibernate-configuration>
