@@ -44,4 +44,19 @@ public class TicketHelper {
             return savedTicket;
         }
     }
+
+    public static boolean deleteTicket(SessionFactory sessionFactory, int id) {
+        Ticket ticketToRemove = getTicketByID(sessionFactory, id);
+        if (ticketToRemove == null) {
+            return false;
+        }
+        try(Session session = sessionFactory.openSession();
+        ) {
+            session.getTransaction().begin();
+            session.remove(ticketToRemove);
+            session.getTransaction().commit();
+
+            return true;
+        }
+    }
 }
