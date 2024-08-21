@@ -59,4 +59,27 @@ public class TicketHelper {
             return true;
         }
     }
+
+    public static Ticket updateTicket(SessionFactory sessionFactory, Ticket ticket) {
+
+        Ticket ticketToUpdate = getTicketByID(sessionFactory, ticket.getId());
+
+        try(Session session = sessionFactory.openSession();
+        ) {
+            Ticket updatedTicket = null;
+
+            try {
+                ticketToUpdate.setTicketType(ticket.getTicketType());
+                ticketToUpdate.setUserId(ticket.getUserId());
+
+                session.getTransaction().begin();
+                updatedTicket = session.merge(ticketToUpdate);
+                session.getTransaction().commit();
+            } catch (NullPointerException ex) {
+                System.out.println("Ticket with ID:"+ticket.getId()+" does not exist.");
+            }
+
+            return updatedTicket;
+        }
+    }
 }
