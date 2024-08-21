@@ -1,5 +1,8 @@
 package com.severin;
 
+import com.severin.entity.Ticket;
+import com.severin.enums.TicketType;
+import com.severin.helper.TicketHelper;
 import com.severin.helper.UserHelper;
 import com.severin.util.HibernateUtil;
 
@@ -13,9 +16,9 @@ public class Main
     {
         try(SessionFactory sessionFactory =  HibernateUtil.getSessionFactory()
         ) {
-            List<User> userList = UserHelper.getUsersList(sessionFactory);
-            for (User user: userList) {
-                System.out.println(user);
+            List<Ticket> ticketList = TicketHelper.getTicketList(sessionFactory);
+            for (Ticket ticket: ticketList) {
+                System.out.println(ticket);
             }
         }
     }

@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.severin.entity.Ticket;
 
-import com.severin.entity.User;
 import jakarta.persistence.Query;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
@@ -32,6 +31,17 @@ public class TicketHelper {
         try(Session session = sessionFactory.openSession();
         ) {
             return session.get(Ticket.class, id);
+        }
+    }
+
+    public static Ticket saveTicket(SessionFactory sessionFactory, Ticket ticket) {
+        try(Session session = sessionFactory.openSession();
+        ) {
+            session.getTransaction().begin();
+            Ticket savedTicket = session.merge(ticket);
+            session.getTransaction().commit();
+
+            return savedTicket;
         }
     }
 }
