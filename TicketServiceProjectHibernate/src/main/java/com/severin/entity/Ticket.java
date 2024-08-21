@@ -2,6 +2,7 @@ package com.severin.entity;
 
 import com.severin.enums.TicketType;
 import jakarta.persistence.*;
+import org.hibernate.annotations.ColumnTransformer;
 
 import java.sql.Timestamp;
 
@@ -11,6 +12,7 @@ import java.sql.Timestamp;
 @lombok.Getter
 @lombok.AllArgsConstructor
 @lombok.NoArgsConstructor
+@lombok.Builder
 public class Ticket {
 
     @Id
@@ -19,6 +21,7 @@ public class Ticket {
 
     @Column(name="ticket_type")
     @Enumerated(EnumType.STRING)
+    @ColumnTransformer(write = "?::ticket_type")
     private TicketType ticketType;
 
     @Column(name="user_id")
