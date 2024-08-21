@@ -31,9 +31,9 @@ public class Ticket {
     public String toString() {
         return "Ticket ["+
                 "id="+this.id+" "+
-                "type"+this.ticketType+" "+
-                "userId"+this.userId+" "+
-                "creationDate"+this.creationDate+
+                "type="+this.ticketType+" "+
+                "userId="+this.userId+" "+
+                "creationDate="+this.creationDate+
                 "]";
     }
 }
